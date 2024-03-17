@@ -9,6 +9,7 @@ import { LuLogOut } from "react-icons/lu";
 import { FadeInandOut, SlideUpDownMenu } from "../Animations/animation";
 import { auth } from "../firebase.config";
 import { QueryClient, useQueryClient } from "react-query";
+import { adminIds } from "../utils/helps";
 const Header = () => {
   const { data, isLoading, isError, refetch } = useUser();
   const [isMenu, setIsMenu] = useState(false);
@@ -87,12 +88,12 @@ const Header = () => {
                         >
                           My Account
                         </Link>
-                        <Link
+                        {adminIds.includes(data?.uid) && <Link
                           className="text-txtLight hover:text-txtDark whitespace-nowrap text-base"
                           to={"/template/create"}
                         >
                           Add New Template
-                        </Link>
+                        </Link>}
 
                         <div className="w-full px-2 py-2 border-t border-gray-300 flex items-center justify-between group cursor-pointer" onClick={signoutuser}>
                           <p className="group-hover:text-txtDark text-txtLight ">
